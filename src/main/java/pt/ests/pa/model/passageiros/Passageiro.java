@@ -1,5 +1,7 @@
 package pt.ests.pa.model.passageiros;
 
+import java.util.Objects;
+
 /**
  * Classe abstrata que representa um passageiro do simulador de elevadores.
  * Cada passageiro surge num piso de origem e pretende chegar a um piso de destino.
@@ -90,5 +92,37 @@ public abstract class Passageiro {
                 + ", origem=" + pisoOrigem
                 + ", destino=" + pisoDestino
                 + ", prioridade=" + prioridade + "]";
+    }
+
+    /**
+     * Dois passageiros são considerados iguais se tiverem o mesmo id.
+     * Como o id é único e gerado sequencialmente para todas as subclasses
+     * (o contador é partilhado na classe base), não há risco de colisão
+     * entre passageiros de tipos diferentes.
+     *
+     * @param obj o objeto a comparar
+     * @return {@code true} se {@code obj} for um Passageiro com o mesmo id
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Passageiro)) {
+            return false;
+        }
+        Passageiro outro = (Passageiro) obj;
+        return this.id == outro.id;
+    }
+
+    /**
+     * Calcula o hashCode do passageiro com base no seu id único,
+     * consistente com a implementação de {@link #equals(Object)}.
+     *
+     * @return o hashCode do passageiro
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
