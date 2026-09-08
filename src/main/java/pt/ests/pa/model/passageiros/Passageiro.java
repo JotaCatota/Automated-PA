@@ -6,7 +6,7 @@ import java.util.Objects;
  * Classe abstrata que representa um passageiro do simulador de elevadores.
  * Cada passageiro surge num piso de origem e pretende chegar a um piso de destino.
  */
-public abstract class Passageiro {
+public abstract class Passageiro implements Comparable<Passageiro> {
 
     // Contador estático usado para atribuir um id único e sequencial a cada passageiro criado.
     private static int proximoId = 1;
@@ -124,5 +124,26 @@ public abstract class Passageiro {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    /**
+     * Compara este passageiro com outro para efeitos de ordenação por
+     * prioridade de embarque. A ordem natural é decrescente na prioridade,
+     * ou seja, os passageiros mais prioritários (Idosos) ficam à frente
+     * dos menos prioritários (Adultos).
+     * <p>
+     * Esta ordenação é pensada para ser usada diretamente numa fila de
+     * prioridade (ex.: {@code PriorityQueue<Passageiro>}), onde o elemento
+     * "menor" segundo {@code compareTo} é o primeiro a ser removido - por
+     * isso um passageiro mais prioritário deve comparar como "menor".
+     *
+     * @param outro o outro passageiro a comparar
+     * @return um valor negativo se este passageiro tiver prioridade mais
+     *         alta, positivo se tiver prioridade mais baixa, e zero se as
+     *         prioridades forem iguais
+     */
+    @Override
+    public int compareTo(Passageiro outro) {
+        return Integer.compare(outro.prioridade, this.prioridade);
     }
 }
