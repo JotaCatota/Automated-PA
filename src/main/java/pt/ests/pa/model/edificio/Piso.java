@@ -35,4 +35,15 @@ public class Piso {
     public void adicionarPassageiro(Passageiro passageiro) {
         filaEspera.add(passageiro);
     }
+
+    /**
+     * Remove e devolve o próximo passageiro a embarcar, respeitando a
+     * ordem de prioridade da fila de espera.
+     *
+     * @return o próximo passageiro a embarcar, ou {@code null} se não
+     *         houver nenhum passageiro à espera neste piso
+     */
+    public Passageiro removerProximoPassageiro() {
+        return filaEspera.poll();
+    }
 }
