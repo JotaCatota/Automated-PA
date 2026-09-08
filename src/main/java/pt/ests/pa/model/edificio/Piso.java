@@ -24,4 +24,15 @@ public class Piso {
         this.numero = numero;
         this.filaEspera = new PriorityQueue<>();
     }
+
+    /**
+     * Adiciona um passageiro à fila de espera deste piso.
+     * A posição do passageiro na fila é determinada automaticamente pela
+     * sua prioridade de embarque (ver {@link Passageiro#compareTo}).
+     *
+     * @param passageiro o passageiro a colocar em espera neste piso
+     */
+    public void adicionarPassageiro(Passageiro passageiro) {
+        filaEspera.add(passageiro);
+    }
 }
