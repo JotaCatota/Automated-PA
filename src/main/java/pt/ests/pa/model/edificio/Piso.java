@@ -46,4 +46,31 @@ public class Piso {
     public Passageiro removerProximoPassageiro() {
         return filaEspera.poll();
     }
+
+    /**
+     * Devolve o número identificador deste piso.
+     *
+     * @return o número do piso
+     */
+    public int getNumero() {
+        return numero;
+    }
+
+    /**
+     * Indica se existem passageiros à espera neste piso.
+     *
+     * @return {@code true} se houver pelo menos um passageiro em espera
+     */
+    public boolean temPassageirosEmEspera() {
+        return !filaEspera.isEmpty();
+    }
+
+    /**
+     * Devolve o número de passageiros atualmente à espera neste piso.
+     *
+     * @return o número de passageiros em espera
+     */
+    public int getNumeroPassageirosEmEspera() {
+        return filaEspera.size();
+    }
 }
