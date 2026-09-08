@@ -75,4 +75,20 @@ public abstract class Passageiro {
     public int getInstanteCriacao() {
         return instanteCriacao;
     }
+
+    /**
+     * Devolve uma representação textual do passageiro, incluindo o seu tipo
+     * concreto (Crianca, Adulto ou Idoso), útil para a visualização em consola.
+     * O tipo é obtido dinamicamente via {@code getClass()}, para que esta
+     * implementação sirva todas as subclasses sem precisar de ser repetida.
+     *
+     * @return uma descrição textual do passageiro
+     */
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + " [id=" + id
+                + ", origem=" + pisoOrigem
+                + ", destino=" + pisoDestino
+                + ", prioridade=" + prioridade + "]";
+    }
 }
